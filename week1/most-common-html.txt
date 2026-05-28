@@ -1,0 +1,82 @@
+Most Common Html
+
+Structural Tags
+<!DOCTYPE html> - html5 version
+<html></html>
+<head></head>
+<body></body>
+<header></header>
+<nav></nav>
+<main></main>
+<section></section>
+<div></div>
+<h1> to <h6>
+<a></a> - href, target
+<p></p>
+<br /> & <hr />
+<footer></footer>
+
+Metadata Tags
+<link>
+<style>
+<title>
+<meta> 
+
+
+Form Tags
+<form>
+<input /> - text, email, password, checkbox, radio
+<textarea>
+<button>
+<label>
+
+Table Tags
+<table>
+<tr> - table row
+<th> - table head
+<td> - table data cell
+<thead>
+<tbody>
+<tfoot>
+
+
+Formatting Tags
+
+<b>
+<center>
+<em>
+<i>
+<small>
+<sub>
+<sup>
+
+
+List Tags
+<ul>
+<ol>
+<li>
+
+
+Attributes
+class
+id
+src
+href
+alt
+type
+placeholder
+
+
+
+Scripting Tags
+<script>
+
+
+Embedded Content Tags
+<img /> - src,alt
+<vedio>
+<iframe>
+
+
+
+
