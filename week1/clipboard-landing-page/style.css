@@ -1,0 +1,119 @@
+* {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  box-sizing: border-box;
+  text-align: center;
+  padding: 0;
+  margin: 0;
+}
+
+p {
+    max-width: 600px;
+    margin: 10px auto;
+    font-size: 18px;
+    font-weight: 400;
+    color: rgb(184, 183, 183);
+}
+
+header {
+  background-image: url(images/bg-header-desktop.png);
+  background-size: cover;
+  width: 100%;
+  height: 40vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+header img {
+  width: 80px;
+  margin-top: 40px;
+}
+
+.history {
+  margin: 50px 0;
+}
+
+.history div > .download {
+    margin: 30px 0;
+}
+.history .download button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 20px;
+    color: #fff;
+    cursor: pointer;
+}
+.history .download .blue {
+    background: rgb(9, 164, 136);
+}
+.history .download .green {
+    background: rgb(5, 5, 201);
+}
+
+.track, .clipboard, .workflow {
+    margin-top: 70px;
+    margin-bottom: 70px;
+}
+
+.workflow p {
+    text-align: center;
+}
+
+.computer { 
+    display: flex;
+    gap: 50px;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.column div {
+    max-width: 350px;
+    margin: 50px 0;
+}
+.column div h3, p {
+    text-align: left;
+}
+
+.productivity {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin: 50px 100px;
+}
+
+.productivity div {
+    width: 33%;
+}
+
+.companys {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+footer {
+    width: 100%;
+    padding: 50px 0;
+    background-color: gainsboro;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+footer div ul {
+    display: flex;
+    align-items: center;
+    justify-content: left;
+}
+
+footer div ul li {
+    list-style: none;
+    padding: 0 50px;
+}
+footer div ul li:hover {
+    color: rgb(12, 178, 148);
+    cursor: pointer;
+}
+footer .logo {
+    width: 40px;
+}
