@@ -304,7 +304,342 @@
 
 
 
+// Nullish coalescing operator '??'
+// The nullish coalescing operator is written as two question marks ??.
+// As it treats null and undefined similarly, we’ll use a special term here, in this article. For brevity, we’ll say that a value is “defined” when it’s neither null nor undefined.
+
+// The result of a ?? b is:
+
+// if a is defined, then a,
+// if a isn’t defined, then b.
+// In other words, ?? returns the first argument if it’s not null/undefined. Otherwise, the second one.
+
+// The nullish coalescing operator isn’t anything completely new.
+// It’s just a nice syntax to get the first “defined” value of the two.
+
+// We can rewrite result = a ?? b using the operators that we already know, like this:
+// result = (a !== null && a !== undefined) ? a : b;
+// Now it should be absolutely clear what ?? does. Let’s see where it helps.
+// The common use case for ?? is to provide a default value.
+
+// For example, here we show user if its value isn’t null/undefined, otherwise Anonymous:
+// let user;
+// alert(user ?? "Anonymous"); // Anonymous (user is undefined)
+
+// Here’s the example with user assigned to a name:
+// let user = "John";
+// alert(user ?? "Anonymous"); // John (user is not null/undefined)
+// The nullish coalescing operator ?? provides a short way to choose the first “defined” value from a list.
+// It’s used to assign default values to variables:
+
+// // set height=100, if height is null or undefined
+// height = height ?? 100;
+// height = (height !== undefined && height !== null) ? height : 100;
+// The operator ?? has a very low precedence, only a bit higher than ? and =, so consider adding parentheses when using it in an expression.
+// It’s forbidden to use it with || or && without explicit parentheses.
 
 
 
 
+
+
+
+
+
+
+
+// Control Flow
+
+
+// Control flow decides which code runs, when it runs, and how many times it runs.
+// It's like decision-making + direction in your JavaScript program.
+// If operators are the verbs, control flow is the traffic signal.
+
+// if, else if, else
+
+// if (condition) {
+// // runs if condition is true
+// } else if (anotherCondition) {
+// // runs if first was false, second is true
+// } else {
+// // runs if none are true
+// }
+
+// Example:
+// let marks = 78;
+// if (marks >= 90) {
+// console.log("A");
+// } else if (marks >= 75) {
+// console.log("B");
+// } else {
+// console.log("C");
+// }
+
+
+// switch-case
+// Great for checking one variable against many values.
+
+// switch (value) {
+// case value1:
+// // code
+// break;
+// case value2:
+// // code
+// break;
+// default:
+// // fallback
+// }
+
+
+// Example:
+// let fruit = "apple";
+// switch (fruit) {
+// case "banana":
+// console.log("Yellow");
+// break;
+// case "apple":
+// console.log("Red");
+// break;
+// default:
+// console.log("Unknown");
+// }
+
+
+
+
+
+// Early Return Pattern
+// Used in functions to exit early if some condition fails.
+// function checkAge(age) {
+// if (age < 18) return "Denied";
+// return "Allowed";
+// }
+// This avoids deep nesting and makes logic cleaner.
+
+
+
+
+
+// Common Confusions
+// switch-case executes all cases after a match unless you break
+// else if chain works top-down — order matters
+// You can use truthy/falsy values directly in if
+
+
+
+// Practice 
+// 1. Student grade logic:
+// // Write a program that prints A, B, C, D, or F based on marks
+
+
+// 2. Rock-paper-scissors:
+// // Given player1 and player2's choice, print winner or draw
+
+
+// 3. Login message:
+// let isLoggedIn = true;
+// let isAdmin = false;
+// // Show different messages based on combination
+
+
+// 4. Weather advice:
+// let weather = "rainy";
+// // Use switch-case to print what to wear
+
+
+// 5. Age checker:
+// // Return "Kid", "Teen", "Adult", or "Senior"
+
+
+
+
+
+// Loops
+
+
+// Loops are a way to repeat the same code multiple times.
+// Loops help us repeat code without rewriting it.
+// If a task needs to be done multiple times (e.g., printing 1–10, going through an array, or checking each character in a string), loops are the backbone.
+
+
+
+// for Loop
+// for (begin; condition; step) {
+//   // ... loop body ...
+// }
+
+
+// for (let i = 0; i < 3; i++) { // shows 0, then 1, then 2
+//   alert(i);
+// }
+// part		
+// begin	    let i = 0	Executes once upon entering the loop.
+// condition	i < 3	    Checked before every loop iteration. If false, the loop stops.
+// body	        alert(i)	Runs again and again while the condition is truthy.
+// step	        i++	        Executes after the body on each iteration.
+
+
+// for (let i = 0; i < 5; i++) {
+// console.log(i);
+// }
+// Start from i = 0
+// Run till i < 5
+// Increase i each time
+
+
+
+
+// while Loop
+// let i = 0;
+// while (i < 5) {
+// console.log(i);
+// i++;
+// }
+
+// Condition is checked before running
+
+
+
+
+// do-while Loop
+// let i = 0;
+// do {
+// console.log(i);
+// i++;
+// } while (i < 5);
+// Runs at least once, even if condition is false
+
+
+
+// while – The condition is checked before each iteration.
+// do..while – The condition is checked after each iteration.
+// for (;;) – The condition is checked before each iteration, additional settings available.
+
+
+
+// break and continue
+// break : Exit loop completely
+// continue : Skip current iteration and move to next
+
+
+// for (let i = 1; i <= 5; i++) {
+// if (i === 3) continue;
+// console.log(i); // Skips 3
+// }
+
+
+// for-of – Arrays & Strings
+// The for...of loop iterates over the values of iterable objects such as arrays, strings, Maps, Sets, and NodeLists.
+
+// for (variable of iterable) {
+//   // code block to be executed
+// }
+
+// variable
+// For every iteration the value of the next property is assigned to the variable. Variable can be declared with const, let, or var.
+// iterable
+// An object that has iterable properties.
+
+
+// let fruits = ["Apple", "Orange", "Plum"];
+// // iterates over array elements
+// for (let fruit of fruits) {
+//   alert( fruit );
+// }
+
+// for (let char of "Javascript") {
+// console.log(char);
+// }
+
+// Works on anything iterable (arrays, strings)
+
+
+
+
+// forEach – Arrays
+// Iterates over each element in an Array
+// let nums = [10, 20, 30];
+// nums.forEach((num) => {
+// console.log(num);
+// });
+// Cleaner than for for arrays, but you can’t break/return
+
+
+
+// for-in – Objects (and arrays if needed)
+// The for...in loop iterates over the enumerable properties of an object.
+// It is typically used for iterating over object keys.
+
+// for (key in object) {
+//   // code block to be executed
+// }
+
+
+
+// let user = { name: "John", age: 26 };
+// for (let key in user) {
+// console.log(key, user[key]);
+// }
+
+
+// const person = {fname:"John", lname:"Doe", age:25};
+
+// let text = "";
+// for (let x in person) {
+//   text += person[x];
+// }
+
+
+
+// for (key in object) {
+//   // executes the body for each key among object properties
+// }
+// For instance, let’s output all properties of user:
+
+// let user = {
+//   name: "John",
+//   age: 30,
+//   isAdmin: true
+// };
+
+// for (let key in user) {
+//   // keys
+//   alert( key );  // name, age, isAdmin
+//   // values for the keys
+//   alert( user[key] ); // John, 30, true
+// }
+
+
+
+
+
+
+// Common Confusions
+// for-in is for objects, not arrays (may cause issues with unexpected keys)
+// forEach can't use break or continue
+// while and do-while work best when number of iterations is unknown
+
+
+
+// Mindset
+// Loops = data processor.
+// Use the right loop for the job:
+// for = best for numbers/indexes
+// for-of = for array values
+// for-in = for object keys
+// while = for unpredictable conditions
+
+
+
+
+// Practice 
+// 1. Print 1 to 10 using for
+// 2. Print even numbers between 1 to 20
+// 3. Reverse a string using loop
+// 4. Sum of all numbers in an array
+// 5. Print all characters of a name using for-of
+// 6. Print all object keys and values using for-in
+// 7. Use continue to skip a specific number
+// 8. Guess number game – use while to ask until correct
+// 9. Pattern: Print triangle using *
+// 10. Sum of even numbers in an array using forEach
