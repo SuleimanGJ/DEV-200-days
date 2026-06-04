@@ -643,3 +643,373 @@
 // 8. Guess number game – use while to ask until correct
 // 9. Pattern: Print triangle using *
 // 10. Sum of even numbers in an array using forEach
+
+
+
+
+
+
+
+
+
+
+
+
+//  Functions
+// Functions are blocks of reusable logic.
+// Functions are the main “building blocks” of the program. They allow the code to be called many times without repetition.
+// Instead of repeating the same task again and again, wrap it in a function and reuse it with different inputs.
+// Think of a function like a vending machine:
+// Input: you give money + item code
+// Output: it gives you the item
+// Logic: hidden inside
+
+
+
+// // Syntax of function
+// function name(parameter1, parameter2, ... parameterN) {
+//  // body
+// }
+// name(argument1, argument2, ... argumentN)
+
+
+
+
+
+// Function Declarations
+// function greet() {
+//  console.log("Welcome to JavaScript!");
+// }
+// greet();
+// You define it once, then call it whenever needed.
+
+
+
+// Parameters vs Arguments
+// function greet(name) {
+//  console.log("Hello " + name);
+// }
+// greet("World");
+
+// name is a parameter
+// "World" is the argument you pass
+
+
+
+
+// Return Values
+// tion sum(a, b) {
+//  return a + b;
+// }
+// let total = sum(5, 10); // total is 15
+// // return sends back a result to wherever the function was called
+// // After return , function exits
+
+
+
+Function Expressions
+const greet = function () {
+ console.log("Hello!");
+};
+Functions stored in variables
+Cannot be hoisted (you can’t call them before they’re defined)
+
+
+
+// Function Expression vs Function Declaration
+// First, the syntax: how to differentiate between them in the code.
+
+// Function Declaration: a function, declared as a separate statement, in the main code flow:
+// // Function Declaration
+// function sum(a, b) {
+//   return a + b;
+// }
+
+
+// Function Expression: a function, created inside an expression or inside another syntax construct. Here, the function is created on the right side of the “assignment expression” =:
+
+// // Function Expression
+// let sum = function(a, b) {
+//   return a + b;
+// };
+
+
+
+
+// The more subtle difference is when a function is created by the JavaScript engine.
+
+// A Function Expression is created when the execution reaches it and is usable only from that moment.
+
+// Once the execution flow passes to the right side of the assignment let sum = function… – here we go, the function is created and can be used (assigned, called, etc. ) from now on.
+
+// Function Declarations are different.
+
+// A Function Declaration can be called earlier than it is defined.
+
+// For example, a global Function Declaration is visible in the whole script, no matter where it is.
+
+// That’s due to internal algorithms. When JavaScript prepares to run the script, it first looks for global Function Declarations in it and creates the functions. We can think of it as an “initialization stage”.
+// And after all Function Declarations are processed, the code is executed. So it has access to these functions.
+
+
+// Another special feature of Function Declarations is their block scope.
+
+// In strict mode, when a Function Declaration is within a code block, it’s visible everywhere inside that block. But not outside of it.
+
+// For instance, let’s imagine that we need to declare a function welcome() depending on the age variable that we get during runtime. And then we plan to use it some time later.
+
+// If we use Function Declaration, it won’t work as intended:
+
+
+
+
+
+
+
+
+// Summary
+// Functions are values. They can be assigned, copied or declared in any place of the code.
+// If the function is declared as a separate statement in the main code flow, that’s called a “Function Declaration”.
+// If the function is created as a part of an expression, it’s called a “Function Expression”.
+// Function Declarations are processed before the code block is executed. They are visible everywhere in the block.
+// Function Expressions are created when the execution flow reaches them.
+// In most cases when we need to declare a function, a Function Declaration is preferable, because it is visible prior to the declaration itself. That gives us more flexibility in code organization, and is usually more readable.
+
+// So we should use a Function Expression only when a Function Declaration is not fit for the task. We’ve seen a couple of examples of that in this chapter, and will see more in the future.
+
+
+
+
+
+
+
+
+// Arrow Functions
+// There’s another very simple and concise syntax for creating functions, that’s often better than Function Expressions.
+
+// It’s called “arrow functions”, because it looks like this:
+
+// let func = (arg1, arg2, ..., argN) => expression;
+
+// onst greet = () => {
+//  console.log("Hi!");
+// };
+// Cleaner syntax
+// No own this , no arguments object
+
+
+
+
+// Summary
+// Arrow functions are handy for simple actions, especially for one-liners. They come in two flavors:
+
+// Without curly braces: (...args) => expression – the right side is an expression: the function evaluates it and returns the result. Parentheses can be omitted, if there’s only a single argument, e.g. n => n*2.
+// With curly braces: (...args) => { body } – brackets allow us to write multiple statements inside the function, but we need an explicit return to return something.
+
+
+
+// Default + Rest + Spread
+// function multiply(a = 1, b = 1) {
+//  return a * b;
+// }
+// function sum(...nums) {
+//  return nums.reduce((acc, val) => acc + val, 0);
+// }
+// let nums = [1, 2, 3];
+// console.log(sum(...nums)); // Spread
+
+// a = 1 → default parameter
+// ...nums → rest parameter
+// ...nums (in call) → spread operator
+
+
+
+
+
+//  First-Class Functions
+// functions are treated like any other value (such as numbers or strings).
+// JavaScript treats functions as values:
+// In JavaScript, functions are called first-class citizens because they can be used like normal values.
+
+// Be assigned to variables // funtional expression
+// Be passed as arguments to other functions // callback functions
+// Be returned from other functions 
+// Be stored in objects or arrays // method
+
+// example 1 - Be passed as arguments to other functions
+// function shout(msg) {
+//  return msg.toUpperCase();
+// }
+// function processMessage(fn) {
+//  console.log(fn("hello"));
+// }
+// processMessage(shout);
+
+
+
+// Why is this important?
+// First-class functions enable powerful JavaScript features like:
+// Callbacks
+// Higher-order functions
+// Closures
+// Functional programming
+// Event handling
+// Async programming (setTimeout, Promises, etc.)
+
+
+
+
+
+// Higher-Order Functions (HOF)
+// Functions that accept other functions or return functions.
+
+
+// function createMultiplier(x) {
+//  return function (y) {
+//  return x * y;
+//  };
+// }
+// let double = createMultiplier(2);
+// console.log(double(5)); // 10
+
+
+
+
+
+// Closures & Lexical Scope
+
+
+// Lexical Scope in JavaScript
+// Lexical scope means that a function can access variables based on where it is defined in the code, not where it is called.
+// Example:
+// const globalVar = "I am global";
+// function outer() {
+//     const outerVar = "I am in outer";
+
+//     function inner() {
+//         console.log(globalVar); // Accessible
+//         console.log(outerVar);  // Accessible
+//     }
+
+//     inner();
+// }
+// outer();
+
+// When inner() executes, it can access:
+// Its own variables
+// Variables from outer()
+// Global variables
+
+// This is determined by the function's lexical (source code) location.
+
+
+
+
+
+
+
+// Closures
+// Closures = when a function remembers its parent scope, even after the parent has finished.
+// A closure is created when a function remembers and continues to access variables from its lexical scope even after the outer function has finished executing.
+// Example:
+// function counter() {
+//     let count = 0;
+
+//     return function() {
+//         count++;
+//         return count;
+//     };
+// }
+
+// const increment = counter();
+
+// console.log(increment()); // 1
+// console.log(increment()); // 2
+// console.log(increment()); // 3
+// Even after counter() has completed, the inner function still has access to count.
+
+// What happens?
+// counter() runs.
+// count is initialized to 0.
+// The inner function is returned.
+// Normally, you might expect count to disappear when counter() finishes.
+// But the returned function closes over (remembers) count.
+// Every call to increment() updates the same count variable.
+
+// This remembered environment is called a closure.
+
+
+
+
+
+// Practical Example: Private Variables
+// Closures are often used to create private state.
+
+// function createBankAccount(initialBalance) {
+//     let balance = initialBalance;
+
+//     return {
+//         deposit(amount) {
+//             balance += amount;
+//         },
+
+//         getBalance() {
+//             return balance;
+//         }
+//     };
+// }
+
+// const account = createBankAccount(100);
+// account.deposit(50);
+// console.log(account.getBalance()); // 150
+
+// Here:
+// balance cannot be accessed directly.
+// Only the returned methods can modify or read it.
+// balance stays alive because of closures.
+
+
+
+
+
+// Relationship Between Lexical Scope and Closures
+// Lexical Scope → Defines which variables a function can access based on where it is written.
+// Closure → The mechanism that preserves those variables after the outer function has finished execution.
+
+// In short:
+// Closure = Function + its preserved lexical environment.
+
+
+
+
+// IIFE – Immediately Invoked Function Expression
+// An IIFE is a function that is defined and executed immediately after it is created.
+// Used to create private scope instantly.
+
+// (function () {
+//  console.log("I run immediately!");
+// })();
+
+
+// // IIFE with Parameters
+// (function (name) {
+//     console.log(`Hello, ${name}`);
+// })("John");
+
+
+// Arrow Function IIFE
+// (() => {
+//     console.log("Arrow IIFE");
+// })();
+
+
+
+// Why Use an IIFE?
+// 1. Avoid Polluting the Global Scope
+// 2. Create Private Variables
+// 3. Module Pattern (Before ES6 Modules)
+
+
+
+
+
