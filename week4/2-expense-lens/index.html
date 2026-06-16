@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expense Lens</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    
+    <form action="" id="expenseForm">
+        <input type="text" id="title">
+        <input type="number" id="amount">
+        <select id="category">
+            <option>Food</option>
+            <option>Tranport</option>
+            <option>Shoping</option>
+        </select>
+        <input type="date" id="date">
+        <button id="addExpense">Add Expense</button>
+    </form>
+    <h2 id="total">$0</h2>
+    <div class="expensesContainer"></div>
+
+    <script src="app.js"></script>
+</body>
+</html>
