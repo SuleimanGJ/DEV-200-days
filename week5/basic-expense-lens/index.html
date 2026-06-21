@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Basic Expense Lens</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>Expense Lens</h1>
+    <form id="expenseForm">
+        <label for="description">
+            <input type="text" name="description" id="description" placeholder="Description">
+        </label>
+        <label for="amount">
+            <input type="number" name="amount" id="amount" placeholder="Amount">
+        </label>
+        <button type="submit">Add Expense</button>
+    </form>
+    <h2 id="total">Total: $0</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Description</th>
+                <th>Amount</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        
+        <tbody id="transTable"></tbody>
+    </table>
+
+    <script src="app.js"></script>
+</body>
+</html>
