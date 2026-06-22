@@ -1,0 +1,166 @@
+HTTP + Request Lifecycle
+
+What I studied today:
+
+  Client-Server architecture
+  HTTP & why it's stateless
+  Request structure 
+  HTTP methods 
+  Status codes 
+  Request lifecycle
+
+Let's understand how clients and servers talk to each other.
+
+1 Client-Server Architecture?
+
+The problem: 
+How do computers communicate reliably?
+
+Solution: Split the work.
+
+Client (Browser) → Displays UI, sends requests
+ 
+Server (Backend) → Stores data, runs logic, sends responses
+
+Why?
+
+- Easy to scale 
+- Security stays on server 
+- Multiple clients use same backend
+
+Client displays. Server processes.
+
+2 What is HTTP?
+
+HTTP = the language clients and servers use.
+
+How it works:
+
+Client: "Give me user data"
+Server: "Here's the data (200 OK)"
+
+Key point: 
+
+  It's stateless.
+  Server doesn't remember you 
+  Every request needs auth token/cookie 
+  This is why JWT exists
+
+3 Client vs Server
+
+Client examples:
+Browser, mobile app, Postman
+
+Server examples:
+Express (Node.js), Django (Python), Spring Boot (Java)
+
+Flow:
+
+  User clicks 
+  Login Client sends request 
+  Server checks password 
+  Server responds (success/error)
+
+4 HTTP Request Structure
+
+Four parts:
+
+Method (what action):
+
+GET → fetch data 
+POST → create data 
+PUT → replace data 
+PATCH → update specific fields 
+DELETE → remove data
+
+URL (where):
+
+  /api/users /api/login
+  Headers (metadata):
+  Authorization: Bearer token123 
+  Content-Type: application/json
+
+Body (actual data):
+
+Only for POST/PUT/PATCH 
+Contains your data
+
+5 Three Ways to Send Data
+
+Path params (which item):
+
+/users/42 → get user 42 /posts/15 → get post 15
+
+Query params (filter):
+
+/users?page=2&limit=10 → pagination /products?sort=price → sorting
+
+6 HTTP Status Codes
+
+2xx Success:
+
+200 OK → worked 
+201 Created → new resource made 
+204 No Content → success, no data back
+
+4xx Client errors:
+
+400 Bad Request → invalid data 
+401 Unauthorized → not logged in 
+404 Not Found → doesn't exist 
+409 Conflict → duplicate (email exists)
+
+5xx Server errors (backend fault):
+
+500 Internal Server Error → backend crashed 
+503 Service Unavailable → server down
+
+7/ Headers Explained
+
+Headers = instructions for the server.
+
+Authorization:
+Your identity proof Bearer token123.
+
+Content-Type:
+What format you're sending JSON, form data, or file.
+
+Cookie:
+Session info Auto-sent by browser.
+
+Think: Sending a package.
+Headers = shipping label (who, what, where) 
+Body = contents inside the box
+
+8/ HTTP Response Structure
+
+Server sends back three things:
+
+Status code:
+
+200 OK
+404 Not Found
+500 Error
+
+Headers:
+
+Content-Type: application/json 
+Set-Cookie: sessionId=xyz
+
+Body:
+Success: { "message": "Login successful", "token": "abc" }
+ 
+Error: 
+{ "error": "Invalid credentials" }
+
+9/ Request Lifecycle
+
+What actually happens:
+
+  Client creates request 
+  Router receives it, picks handler 
+  Middleware runs (auth check, validation) 
+  Controller handles business logic 
+  Database query if needed 
+  Response built and sent back 
+  Client displays result
