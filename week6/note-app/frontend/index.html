@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Frontend</title>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/axios.min.js"></script> -->
+    <script src="
+    https://cdn.jsdelivr.net/npm/axios@1.18.1/dist/axios.min.js
+    "></script>
+</head>
+
+<body>
+    <div style="display: flex; justify-content: space-around; padding: 0 100px;">
+        <div id="notes">
+            Loading....
+        </div>
+        <div>
+            <input type="text" id="userNote">
+            <button onclick="addNotes()">Create new note</button>
+        </div>
+    </div>
+
+    <div style="display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 100px 0;">
+            <div id="singup-container">
+                <form id="signup-form">
+                    <label for="signup-username">Username:</label>
+                    <input type="text" id="signup-username" placeholder="username">
+                    <label for="signup-password">Password:</label>
+                    <input type="text" id="signup-password" placeholder="password">
+                    <button type="submit">Signup</button>
+                </form>
+                <p>
+                    Already have an account <a href="#" id="show-signin">Signin</a>
+                </p>
+            </div>
+            
+            <div id="singin-container">
+                <form id="signin-form">
+                    <label for="signin-username">Username:</label>
+                    <input type="text" id="signin-username" placeholder="username">
+                    <label for="signin-password">Password:</label>
+                    <input type="text" id="signin-password" placeholder="password">
+                    <button type="submit">Signin</button>
+                </form>
+                <p>
+                    Don't have an account <a href="#" id="show-signup">Signup</a>
+                </p>
+            </div>
+            
+            <p id="response-msg"></p>
+    </div>
+
+    <script>
+
+
+
+        async function singin() {
+                const username = document.querySelector("#singin-username").value;
+                const password = document.querySelector("#singin-password").value;
+                const response = await axios.post("http://localhost:3000/signin", {
+                    username, password
+                });
+                const token = response.data.token;
+                localStorage.setItem("token", token);
+
+                window.location = "/"
+
+            }
+
+        async function addNotes() {
+            await axios.post("http://localhost:3000/notes", {
+                note: document.querySelector("#userNote").value
+            }, {
+                headers: {
+                    token: localStorage.getItem("token")
+                }
+            });
+            const newDiv = document.createElement("div");
+            newDiv.innerHTML = document.querySelector("#userNote").value;
+            newDiv.style.border = "2px solid black";
+            newDiv.style.padding = "15px";
+            document.querySelector("#notes").appendChild(newDiv)
+        }
+
+
+        getNotes()
+        async function getNotes() {
+            const response = await axios.get("http://localhost:3000/notes", {
+                headers: {
+                    token: localStorage.getItem("token")
+                }
+            });
+            let notes = response.data.notes
+            console.log(notes)
+            document.querySelector("#notes").innerHTML = "";
+            for (let i = 0; i < notes.length; i++) {
+                const newDiv = document.createElement("div");
+                newDiv.innerHTML = notes[i].note;
+                newDiv.style.border = "2px solid black";
+                newDiv.style.padding = "15px";
+                document.querySelector("#notes").appendChild(newDiv)
+            }
+        }
+        getNotes()
+    </script>
+</body>
+
+</html>
