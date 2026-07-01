@@ -12,7 +12,9 @@ router.get("/", (req, res) => {
 router.post("/signup", async (req, res) => {
   const {username, password} = req.body;
 
-  console.log(username, password)
+  if(!username || !password){
+    return res.json({message: "Invalid username or password"})
+  }
   const userExists = await User.findOne({username})
 
   if(userExists){

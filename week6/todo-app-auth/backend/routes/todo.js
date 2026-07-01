@@ -23,11 +23,10 @@ router.patch("/:id", async (req, res) => {
     try {
         const id = req.params.id;
         const {completed} = req.body;
-        const todo = await Todo.findById(todoId);
-
-        if (!todo) {
-            res.status(404);
-            throw new Error("Todo not found");
+        if (typeof completed === "undefined") {
+          return res.status(400).json({
+            msg: "You must provide a completed status.",
+          });
         }
         await Todo.updateOne({ _id: id }, {completed: completed});
         res.json({
@@ -41,7 +40,7 @@ router.patch("/:id", async (req, res) => {
 router.post("/", async (req, res) => {
     try {
         const {title} = req.body;
-        const todos = await Todo.create({
+        const newTodo = await Todo.create({
             userId: req.userId,
             title: title,
             completed: false,
@@ -49,7 +48,7 @@ router.post("/", async (req, res) => {
 
         res.json({
             message: "Todo created successfully",
-            todos: todos
+            todos: newTodo
         })
     } catch (error) {
         res.status(500).json({message: "Server Error"})
