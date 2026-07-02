@@ -9,7 +9,7 @@ const app = express();
 // app.use(cors({origin: "*"}))
 app.use(express.json());
 app.use(cors())
-
+app.use(express.static("public"));
 
 app.use("/todo", todoRouter);
 app.use("/user", userRouter);
