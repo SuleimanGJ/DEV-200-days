@@ -5,7 +5,7 @@ dotenv.config();
 const JWT_ADMIN_SECRET = "adminsupersecret1";
 const JWT_USER_SECRET = "usersupersecret1";
 
-
+console.log("inside connectDB ",process.env.MONGO_URI)
 const connectDB = async () => {
     try {
         // await mongoose.connect(process.env.MONGO_URI) // for cloud mongodb

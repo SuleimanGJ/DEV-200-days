@@ -1,6 +1,7 @@
 import e from "express";
 import jwt from "jsonwebtoken";
-import { User } from "../db/index.js";
+import { Purchase, User, Course } from "../db/index.js";
+import userAuth from "../middleware/user.js";
 const router = e.Router();
 const SECRET = "supersecret0";
 
@@ -28,5 +29,32 @@ router.post("/signin", async (req, res) => {
     // Do cookie logic
     res.json({ message: "User signed successfully", token: token });
 })
+
+router.get('/courses', async (req, res) => {
+    const courses = await Course.find({});
+    res.json({ courses: courses })
+});
+
+router.post('/courses/:courseId', userAuth, async (req, res) => {
+    // Implement course purchase logic
+    const courseId = req.params.courseId;
+    const { userId } = req.headers;
+    await Purchase.updateOne({userId: userId}, {$push: {courseId: courseId}})
+    res.json({message: "Purchase complete"})
+});
+
+router.get('/purchasedCourses', userAuth,  async (req, res) => {
+    // Implement fetching purchased courses logic
+    const { userId } = req.headers;
+    const purchasedUser = await Purchase.findOne({userId})
+    if(!purchasedUser){
+        return res.json({message: "User not found"});
+    }
+    const purchasedCourses = await Course.find({_id: {
+        $in : purchasedUser.map(x => x.courseId)
+    }})
+    // console.log(purchasedCourses)
+    res.json(purchasedCourses)
+});
 
 export default router;

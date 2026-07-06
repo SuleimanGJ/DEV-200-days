@@ -1,5 +1,5 @@
 import jwt from "jsonwebtoken";
-import { JWT_USER_SECRET } from "../db/config";
+import { JWT_USER_SECRET } from "../db/config.js";
 
 
 const userAuth = async (req, res, next) => {

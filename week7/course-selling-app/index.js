@@ -2,7 +2,7 @@ import e from "express";
 import dotenv from "dotenv"
 import adminRouter from "./routes/admin.js";
 import userRouter from "./routes/user.js";
-import {connectDB} from "./db/config.js";
+import { connectDB } from "./db/config.js";
 dotenv.config();
 const app = e();
 
