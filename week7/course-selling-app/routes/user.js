@@ -1,11 +1,12 @@
 import e from "express";
 import jwt from "jsonwebtoken";
-import { User } from "../db";
+import { User } from "../db/index.js";
 const router = e.Router();
 const SECRET = "supersecret0";
 
 router.post("/signup", async (req, res) => {
     const { username, email, password } = req.body;
+    // do zod logic here
     const hashedPassword = await bcrypt.hash(password, 5);
     await User.create({ username, email, password: hashedPassword });
     res.json({ message: "User created successfully" });

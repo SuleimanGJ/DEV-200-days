@@ -1,6 +1,6 @@
 import e from "express";
 import jwt from "jsonwebtoken";
-import { Admin } from "../db";
+import { Admin } from "../db/index.js";
 const router = e.Router();
 const SECRET = "supersecret0";
 
