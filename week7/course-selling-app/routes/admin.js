@@ -3,8 +3,8 @@ import jwt from "jsonwebtoken";
 import bcrypt from "bcrypt";
 import { Admin, Course } from "../db/index.js";
 import adminAuth from "../middleware/admin.js";
+import { JWT_ADMIN_SECRET } from "../db/config.js";
 const router = e.Router();
-const SECRET = "supersecret0";
 
 router.post("/signup", async(req, res) => {
     const {username, email, password } = req.body;
@@ -25,7 +25,7 @@ router.post("/signin", async(req, res) => {
     if(!isMatchPassword){
         return res.json({ message: "Incorrect password" })
     }
-    const token = jwt.sign({id: adminExists._id}, SECRET) // to use userId - decoded.id
+    const token = jwt.sign({ id: adminExists._id }, JWT_ADMIN_SECRET) // to use userId - decoded.id
 
     // Do cookie logic
     res.json({ message: "Admin signed successfully", token: token});
@@ -41,7 +41,7 @@ router.post("/course", adminAuth, async (req, res) => {
 })
 
 router.put("/course", adminAuth, async (req, res) => {
-    const { adminId } = req.headers;
+    const { adminId } = req;
     const {title, description, imageUrl, price, courseId } = req.body;
     const course = await Course.findIne({ _id: courseId });
     if(!course){
@@ -57,7 +57,7 @@ router.put("/course", adminAuth, async (req, res) => {
 })
 
 router.get("/course", adminAuth, async (req, res) => {
-    const adminId = req.headers.adminId;
+    const adminId = req.adminId;
     const courses = await Course.find({creatorId: adminId});
     res.json({courses: courses})
 })

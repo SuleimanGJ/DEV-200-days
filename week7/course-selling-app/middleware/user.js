@@ -7,7 +7,7 @@ const userAuth = async (req, res, next) => {
     try {
         const token = authHeader.split(" ")[1];
         const decoded = jwt.verify(token, JWT_USER_SECRET);
-        if(!decoded.id){
+        if(decoded.id){
             req.userId = decoded.id;
             next()
         }
