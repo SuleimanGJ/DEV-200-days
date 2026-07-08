@@ -9,10 +9,10 @@ import { categoryModel } from "../models/Category.js"
 //     DELETE /transactions/:id
 
 const getAllTransactions = async (req, res) => {
-  const userId = req.userId;
+  // const userId = req.userId;
   // Base query
   const query = {
-    userId: req.user.id
+    userId: req.userId
   };
 
   // filters dynamically - category filter
