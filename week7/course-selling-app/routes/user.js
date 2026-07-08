@@ -31,18 +31,6 @@ router.post("/signin", async (req, res) => {
     res.json({ message: "User signed successfully", token: token });
 })
 
-router.get('/courses', async (req, res) => {
-    const courses = await Course.find({});
-    res.json({ courses: courses })
-});
-
-router.post('/courses/:courseId', userAuth, async (req, res) => {
-    // Implement course purchase logic
-    const courseId = req.params.courseId;
-    const { userId } = req;
-    await Purchase.updateOne({userId: userId}, {$push: {courseId: courseId}})
-    res.json({message: "Purchase complete"})
-});
 
 router.get('/purchasedCourses', userAuth,  async (req, res) => {
     // Implement fetching purchased courses logic
