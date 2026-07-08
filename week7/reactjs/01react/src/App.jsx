@@ -7,19 +7,37 @@ function App() {
   return (
     <>
       <section id="center">
-        <div>
-          <h1>Get started</h1>
-        </div>
-        <button
+        <Button count={count} setCount={setCount} />
+          <section>
+            <h1>Amazing scientists</h1>
+            <Profile />
+            <Profile />
+            <Profile />
+        </section>
+      </section>
+    </>
+  )
+}
+
+function Profile() {
+  return (
+    <img
+      src="https://react.dev/images/docs/scientists/MK3eW3As.jpg"
+      alt="Katherine Johnson"
+    />
+  );
+}
+
+function Button({count, setCount}){
+  return (
+    <>
+      <button
           type="button"
           className="counter"
-          onClick={() => setCount(count + 1)}
+          onClick={() => setCount((count) => count + 1)}
         >
           Count is {count}
         </button>
-      </section>
-
-      <div className="ticks"></div>
     </>
   )
 }
