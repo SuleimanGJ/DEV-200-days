@@ -1,5 +1,8 @@
 import { useState } from 'react'
 import './App.css'
+import CondRendering from './components/CondRendering';
+import ListRendering from './components/ListRendering';
+import ListFilter from './components/ListFilter';
 
 function App() {
   const [count, setCount] = useState(0)
@@ -7,6 +10,9 @@ function App() {
   return (
     <>
       <section id="center">
+        <ListFilter />
+        <ListRendering />
+        <CondRendering />
         <Button count={count} setCount={setCount} />
           <section>
             <h1>Amazing scientists</h1>
