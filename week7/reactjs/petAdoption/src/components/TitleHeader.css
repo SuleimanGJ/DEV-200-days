@@ -1,0 +1,10 @@
+.title {
+    background-color: bisque;
+    padding-top: 5px;
+    padding-bottom: 25px;
+    height: 60px;
+}
+.pet-title {
+    color: green;
+    text-align: center;
+}
