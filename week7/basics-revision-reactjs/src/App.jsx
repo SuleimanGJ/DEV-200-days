@@ -1,3 +1,4 @@
+import FetchUsers from "./components/FetchUsers";
 import ProfileCard from "./components/ProfleCard"
 
 
@@ -17,6 +18,7 @@ function App() {
           bio="Frontend Developer" description="Lorem ipsum dolor sit amet consectetur adipisicing elit.Temporibus laboriosam itaque magnam"
         />
       </div>
+      <FetchUsers />
     </div>
   );
 }
