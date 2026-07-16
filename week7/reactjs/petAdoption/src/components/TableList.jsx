@@ -34,7 +34,7 @@ function TableList({ petItems, handleGoBack }) {
               <td>{pet.petName}</td>
               <td>{pet.petType}</td>
               <td>{pet.breed}</td>
-              <td>{pet.name}</td>
+              <td>{pet.adopterName}</td>
               <td>{pet.email}</td>
               <td>{pet.phone}</td>
             </tr>

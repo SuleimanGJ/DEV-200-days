@@ -3,45 +3,51 @@ import "./CreateForm.css"
 import TableList from "./TableList";
 
 function CreateForm() {
-  const [petName, setPetName] = useState("");
-  const [petType, setPetType] = useState("");
-  const [breed, setBreed] = useState("");
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [phone, setPhone] = useState("");
-const [petItems, setPetItems] = useState([]);
-const [showTable, setShowTable] = useState(false);
+  const [petItems, setPetItems] = useState([]);
+  const [values, setValues] = useState({
+    petName: "",
+    petType: "Dog",
+    breed: "",
+    adopterName: "",
+    email: "",
+    phone: "",
+  });
+  const [showTable, setShowTable] = useState(false);
 
+    const { petName, petType, breed, adopterName, email, phone } = values;
+
+    console.log(petName, petType, breed, adopterName, email, phone);
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    console.log("Name from handlechange fn",name)
+    console.log("value from handlechange fn", value);
+    setValues((prevValues) => ({
+      ...prevValues,
+      [name]: value,
+    }));
+  }
   const handleSubmit = (e) => {
     e.preventDefault();
-    // setPetItems([
-    //   ...petItems,
-    //   {
-    //     petName,
-    //     petType,
-    //     breed,
-    //     name,
-    //     email,
-    //     phone,
-    //   },
-    // ]);
      const newPet = {
        petName,
        petType,
        breed,
-       name,
+       adopterName,
        email,
        phone,
      };
 
      setPetItems((prevItems) => [...prevItems, newPet]);
      setShowTable(true);
-     setPetName("")
-     setPetType("")
-     setBreed("")
-     setName("")
-     setEmail("")
-     setPhone("")
+    setValues({
+      petName: "",
+      petType: "Dog",
+      breed: "",
+      adopterName: "",
+      email: "",
+      phone: "",
+    });
   };
 
   const handleGoBack = () => setShowTable(!showTable);
@@ -49,57 +55,67 @@ const [showTable, setShowTable] = useState(false);
   if(showTable){
     return (
       <div id="form">
-        <form id="create-form" onSubmit={handleSubmit}>
+        <form id="create-form">
           <label htmlFor="pet-name">Pet Name</label>
           <input
             type="text"
             id="pet-name"
+            name="petName"
             placeholder="Pet Name"
             value={petName}
-            onChange={(e) => setPetName(e.target.value)}
+            onChange={handleChange}
           />
           <label htmlFor="pet-type">Pet Type</label>
           <select
             id="pet-type"
+            name="petType"
             value={petType}
-            onChange={(e) => setPetType(e.target.value)}
+            onChange={handleChange}
           >
             <option value="dog">Dog</option>
             <option value="cat">Cat</option>
+            <option value="Rabbit">Rabbit</option>
+            <option value="Bird">Bird</option>
           </select>
           <label htmlFor="pet-breed">Breed</label>
           <input
             type="text"
             id="pet-breed"
+            name="breed"
             placeholder="Breed"
             value={breed}
-            onChange={(e) => setBreed(e.target.value)}
+            onChange={handleChange}
           />
-          <label htmlFor="user-name">Name</label>
+          <label htmlFor="user-name">Adopter Name</label>
           <input
             type="text"
-            id="user-name"
-            placeholder="Your Name"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
+            id="adopter-name"
+            name="adopterName"
+            placeholder="adopter Name"
+            value={adopterName}
+            onChange={handleChange}
           />
           <label htmlFor="user-email">Email</label>
           <input
             type="email"
             id="user-email"
+            name="email"
             placeholder="Your Email"
             value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            onChange={handleChange}
           />
           <label htmlFor="user-phone">Phone</label>
           <input
             type="tel"
             id="user-phone"
+            name="phone"
             placeholder="Your Phone"
             value={phone}
-            onChange={(e) => setPhone(e.target.value)}
+            onChange={handleChange}
           />
-          <button id="submit-btn">Submit</button>
+          <button type="submit" onClick={handleSubmit} id="submit-btn">
+            Submit
+          </button>
         </form>
         <div style={{ marginTop: "20px", textAlign: "center" }}>
           <button
