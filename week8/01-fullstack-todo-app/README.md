@@ -13,3 +13,29 @@ This repository is not just a Todo App -- it is a **learning journey** devided i
 - Databasi integration (MERN)
 - Advanced Production Features
 - Pro-Level SaaS App
+
+
+---
+
+
+# Version 1
+
+## Features
+- Add todo
+- View todo
+- Delete todo
+- Mark todo as completed
+
+## Backend
+- REST API:
+ - `GET /todos`
+ - `POST /todos`
+ - `DELETE /todos/:id`
+- Data stored in:
+ - in-memory array OR JSON file
+
+
+## Frontend
+- Form input
+- Todo list rendering
+- `fetch()` API calls
