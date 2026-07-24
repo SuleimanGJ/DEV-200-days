@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Frontend</title>
+    <style>
+        body {
+            background-color: blueviolet;
+        }
+
+        /* #container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            margin: 0 auto;
+        } */
+
+
+        #todo-form {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            max-width: 460px;
+            background-color: rgb(50, 179, 136);
+            padding: 18px;
+            border-radius: 10px;
+        }
+
+        #todo-form>* {
+            margin-bottom: 10px;
+            padding: 10px 5px;
+            outline: none;
+            border: none;
+        }
+
+        #todo-form button {
+            background-color: blanchedalmond;
+            color: #000;
+            font-weight: bold;
+        }
+
+        #todo-list {
+            max-width: 500px;
+            border-radius: 20px;
+            color: whitesmoke;
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        #todo-list div {
+            margin: 10px 0;
+            /* background-color: green; */
+            width: 90%;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="container">
+        <div id="todo-container">
+            <form id="todo-form">
+                <label for="title">Title</label>
+                <input type="text" id="title" placeholder="title">
+                <label for="description">Description</label>
+                <input type="text" id="description" placeholder="description">
+                <button type="submit">Add Todo</button>
+            </form>
+            <div id="todo-list"></div>
+        </div>
+    </div>
+
+    <script>
+        let containerTodo = document.getElementById("todo-container")
+        let todoList = document.getElementById("todo-list")
+        async function loadTodo() {
+            console.log("from loadtodo")
+            const res = await fetch("http://localhost:3000/todos", {
+                method: "GET",
+                headers: {
+                    "Content-Type": "application/json"
+                }
+            })
+            const result = await res.json()
+            console.log(result)
+            console.log(result.data)
+
+
+            todoList.innerHTML = ""
+            result.data.map((todo) => {
+                const newTodo = document.createElement("div")
+                const p = document.createElement("p")
+                const p2 = document.createElement("p")
+                const deleteBtn = document.createElement("button")
+                deleteBtn.textContent = "Delete"
+
+                // deleteBtn.addEventListener("click", () => {
+                //     newTodo.remove()
+                // })
+
+
+                p.textContent = todo.title
+                p2.textContent = todo.description
+                newTodo.appendChild(p)
+                newTodo.appendChild(p2)
+                newTodo.appendChild(deleteBtn)
+                todoList.appendChild(newTodo)
+
+                deleteBtn.addEventListener("click", async () => {
+                    console.log(todo.id)
+                    await fetch(`http://localhost:3000/todos/${todo.id}`, {
+                        method: "DELETE",
+                    })
+                    loadTodo()
+                })
+            })
+            containerTodo.appendChild(todoList)
+        }
+        loadTodo()
+        async function addTodo(e) {
+            console.log("addtodo")
+            e.preventDefault()
+            await fetch("http://localhost:3000/todos", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    title: document.getElementById("title").value,
+                    description: document.getElementById("description").value
+                })
+            })
+            loadTodo()
+        }
+        document.getElementById("todo-form").addEventListener("submit", addTodo)
+    </script>
+</body>
+
+</html>
