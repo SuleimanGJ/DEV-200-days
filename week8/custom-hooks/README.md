@@ -1,3 +1,39 @@
+# The 3 Rules Of Custom Hooks
+
+## Rule 1 — Always start with “use”
+
+jsx
+
+// BAD — React won't recognize this as a hook 😱
+function fetchUser() { ... }
+
+// GOOD ✅
+function useFetchUser() { ... }
+
+## Rule 2 — Only call hooks at the top level
+
+No hooks inside conditions or loops — always at the top of the function.
+
+
+## Rule 3 — Each component gets its own state
+
+Two components using the same custom hook don’t share state. Each gets its own independent copy.
+
+
+# When To Create A Custom Hook
+## Create one when:
+
+✅ Same stateful logic appears in 2+ components
+✅ A component has too many hooks and is hard to read
+✅ You want to test logic separately from UI
+
+## Don’t create one when:
+
+❌ Logic is only used in one place and is simple
+❌ You’re just wrapping a single useState call
+
+
+
 # React + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
