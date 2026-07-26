@@ -6,12 +6,15 @@ import { connectToDB } from "./config/db.js";
 
 import { fileURLToPath } from 'url';
 import path from 'path';
+import { Logger } from "./middleware/Logger.js";
+import z from "zod";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 app.use(express.json());
 app.use(cors())
+app.use(Logger())
 
 app.get("/", (req, res) => {
     res.send("App is working");
@@ -25,7 +28,8 @@ let todos = [];
 // }];
 let nextId = 1;
 app.post("/todos", (req, res) => {
-    const { title, description } = req.body;
+    const parsedBody = z.safeParse(req.body)
+    const { title, description } = parsedBody.data;
     // const lastId = todos.length > 0 ? todos[todos.length - 1].id + 1 : 1;
     const newTodo = { id: nextId++, title, description }
     todos.push(newTodo);
