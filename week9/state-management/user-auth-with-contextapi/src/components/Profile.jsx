@@ -1,20 +1,22 @@
 import { useAuth } from "../hooks/useAuth";
 
 function Login() {
-  const { login } = useAuth();
-
+  const { login, user } = useAuth();
+console.log(login)
   function handleLogin() {
     login({
       id: 1,
-      name: "Khadar",
+      name: "Suleiman",
       role: "admin",
     });
   }
 
   return (
-    <button onClick={handleLogin}>
-      Login
-    </button>
+    <>
+        <button onClick={handleLogin}>
+        Login
+        </button>
+    </>
   );
 }
 

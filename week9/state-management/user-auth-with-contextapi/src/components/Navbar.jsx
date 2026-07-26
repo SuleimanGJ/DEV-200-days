@@ -6,12 +6,13 @@ function Navbar() {
   return (
     <nav>
       {user ? (
-        <div>
-          <p>Hello {user.name}</p>
+        <>
+          <p>User: {user.name}</p>
+          <p>Role: {user.role}</p>
           <button onClick={logout}>
             Logout
           </button>
-        </div>
+        </>
       ) : (
         <p>Not logged in</p>
       )}
