@@ -1,13 +1,13 @@
-import { Todos } from "../models/todoModel";
+import { Todos } from "../models/todoModel.js";
 
 
-const getAll = async (req, res) => {
+const getAllTodo = async (req, res) => {
     const todos = await Todos.find({});
     res.json({ success: true, data: todos, message: "Todo fetched successfully" });
 }
 const createTodo = async (req, res) => {
     const { title, description } = req.body;
-    const newTodo = await Todos.create({ title, descritption });
+    const newTodo = await Todos.create({ title, description });
     res.status(201).json({ success: true, data: newTodo, message: "Todo added successfully" });
 }
 const updateTodo = async (req, res) => {
@@ -17,9 +17,12 @@ const updateTodo = async (req, res) => {
 }
 const deleteTodo = async (req, res) => {
     const id = req.params.id;
-    const deleteTodo = await Todos.findByIdAndDelete({ id });
+    console.log(id)
+    const deleteTodo = await Todos.findByIdAndDelete({ _id: id });
+    // const deleteTodo = await Todos.deleteOne({ _id: id });
+    console.log(deleteTodo)
     res.json({ success: true, data: deleteTodo, message: "Todo deleted successfully" });
 }
 
 
-export { getAllTodo, createTodo, deleteTodo}
+export { getAllTodo, createTodo, updateTodo, deleteTodo}

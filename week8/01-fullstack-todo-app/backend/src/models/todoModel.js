@@ -5,7 +5,7 @@ const ObjectId = Schema.ObjectId;
 
 const todoSchema = new Schema({
     title: {type: String},
-    Description: {type: String},
+    description: {type: String},
     completed: {type: Boolean, default: false}
 })
 
