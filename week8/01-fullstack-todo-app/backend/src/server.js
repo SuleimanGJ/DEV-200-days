@@ -7,12 +7,17 @@ import { todoRouter } from "./routes/todoRoutes.js";
 
 // import { fileURLToPath } from 'url';
 // import path from 'path';
+import { fileURLToPath } from 'url';
+import path from 'path';
+import { Logger } from "./middleware/Logger.js";
+import z from "zod";
 
 // const __filename = fileURLToPath(import.meta.url);
 // const __dirname = path.dirname(__filename);
 
 app.use(express.json());
 app.use(cors())
+app.use(Logger())
 
 app.get("/", (req, res) => {
     res.send("App is working");
