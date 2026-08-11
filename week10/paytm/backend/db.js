@@ -1,7 +1,5 @@
 import mongoose from "mongoose";
 
-mongoose.connect("mongodb+srv://admin1User:ZzPUjiRx2y8q0Lls@cluster1.jlmcjaa.mongodb.net/basic-paytm");
-
 const Schema = mongoose.Schema;
 const ObjectId = Schema.ObjectId;
 
