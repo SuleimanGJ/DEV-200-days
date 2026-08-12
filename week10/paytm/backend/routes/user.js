@@ -15,17 +15,18 @@ const signupSchema = zod.object({
     password: zod.string(),
 });
 
-userRouter.post("signup", async (req, res) => {
+userRouter.post("/signup", async (req, res) => {
     const parsedBody = signupSchema.safeParse(req.body);
     if (!parsedBody.success){
-        res.status(411).json({
+        return res.status(411).json({
             message: "Email already taken / Incorrect inputs"
         })
     }
+    console.log(parsedBody)
     const {username, firstName, lastName, password} = parsedBody.data;
     const existingUser = await User.findOne({username});
     if(existingUser){
-        res.status(411).json({
+        return res.status(411).json({
             message: "Email already taken / Incorrect inputs"
         })
     }
@@ -40,7 +41,7 @@ userRouter.post("signup", async (req, res) => {
         balance: 1 + Math.random() * 1000
     });
 
-    const token = jwt.sign(userId, JWT_SECRET);
+    const token = jwt.sign({userId}, JWT_SECRET);
 
     res.status(201).json({
         message: "User created successfully",
@@ -55,10 +56,11 @@ const signinSchema = zod.object({
     password: zod.string()
 });
 
-userRouter.post("signin", async (req, res) => {
+userRouter.post("/signin", async (req, res) => {
+    console.log(req.body)
     const parsedBody = signupSchema.safeParse(req.body);
     if (!parsedBody.success){
-        res.status(411).json({
+        return res.status(411).json({
             message: "Incorrect inputs"
         })
     }
@@ -73,7 +75,7 @@ userRouter.post("signin", async (req, res) => {
             });
         }
         const userId = existingUser._id;
-        const token = jwt.sign(userId, JWT_SECRET);
+        const token = jwt.sign({userId}, JWT_SECRET);
         res.json({
             token: token
         })
@@ -107,6 +109,7 @@ userRouter.put("/", authMiddleware, async (req, res) => {
         message: "Updated successfully"
     })
 });
+
 
 userRouter.get("/bulk", async (req, res) => {
     const filter = req.query.filter || "";

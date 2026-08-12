@@ -1,10 +1,11 @@
 import express from "express";
-import { Account } from "../db";
+import { Account } from "../db.js";
 import mongoose from "mongoose";
+import { authMiddleware } from "../middleware/authMiddleware.js";
 
 const accountRouter = express.Router();
 
-accountRouter.get("/", async (req, res) => {
+accountRouter.get("/balance", authMiddleware, async (req, res) => {
     const userId = req.userId;
 
     const account = await Account.findOne({userId});
@@ -43,7 +44,7 @@ accountRouter.get("/", async (req, res) => {
 
 // Bad solution - transaction in db
 
-accountRouter.post("/transfer", async (req, res) => {
+accountRouter.post("/transfer", authMiddleware, async (req, res) => {
     const session = await mongoose.startSession();
 
     await session.startTransaction();

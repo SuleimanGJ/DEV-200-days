@@ -1,8 +1,10 @@
 import mongoose from "mongoose";
+import dotenv from "dotenv";
+dotenv.config();
 
 export const connectDB = async () => {
     try {
-        await mongoose.connect("mongodb+srv://admin1User:ZzPUjiRx2y8q0Lls@cluster1.jlmcjaa.mongodb.net/basic-paytm");
+        await mongoose.connect(process.env.MONGO_URI);
         console.log("Database connected");
     } catch (error) {
         console.log("Database failed");
