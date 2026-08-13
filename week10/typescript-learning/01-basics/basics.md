@@ -12,6 +12,27 @@ Manually give the binary permission to run, then initialize your project:
 bash
 chmod +x node_modules/.bin/tsc
 
+### TypeScript installation
+option 1
+1 npm i typescript // devDep - you can get as cl
+2 npx tsc --init
+3 npx tsc -b
+
+option 2
+1 npm i -g typescript // Global - you can get as cli
+2 tsc --init
+3 tsc -b
+
+## tsc - Compile/check TypeScript
+
+## tsx - Run TypeScript
+- is a tool that lets you run TypeScript files directly with Node.js
+- is mainly a convenient development tool so you don't have to manually compile your .ts file every time you want to run it
+- how to install -> npm install tsx -D
+
+## random error
+- In JavaScript/TypeScript, a number beginning with 0 can have special numeric-literal behavior depending on the syntax/runtime context
+
 
 ### TypeScript Simple Types
 The most basic types in TypeScript are called primitives.
