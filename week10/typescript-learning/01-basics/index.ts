@@ -66,3 +66,45 @@ function callback(){
 }
 
 delayFn(callback);
+
+
+// Arrays - stores multiple values of the same types
+
+// let numbers: number[] = [1, 2, 3, 4, 5];
+// console.log( "Original ")
+// console.log(numbers)
+// numbers.push(6)
+// numbers.unshift(0)
+// console.log( "after adding ")
+// console.log(numbers)
+// numbers.pop()
+// numbers.shift()
+// console.log("after removing ")
+// console.log(numbers)
+
+
+// let names: string[] = ["suleiman", "osman"];
+// console.log(names)
+
+
+// Tuples - is an array with fixed length and known types
+
+// let userOne: [string, number, boolean] = ["suleiman", 245, true];
+// console.log(userOne)
+
+
+
+// Objects - stores key-value pairs
+
+// let user: {
+//     name: string,
+//     age: number,
+//     isStudent: boolean
+// } = {
+//     name: "suleiman",
+//     age: 25,
+//     isStudent: true
+// }
+
+// console.log("User name :" + user.name)
+// console.log("User age :" + user.age)
