@@ -1,12 +1,24 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Button } from "./Button"
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 export const Users = () => {
-    const [users, setUsers] = useState([{
-        firstName: "Suleiman",
-        lastName: "Osman",
-        _id: 1
-    }]);
+    const [users, setUsers] = useState([]);
+    const [filter, setFilter] = useState("");
+
+    // use useNavigate or window history
+    const navigate = useNavigate();
+    const handleSendMoney = () => {
+        navigate(`/send?id=${user._id}&name=${user.firstName}`);
+    }
+
+    // add debounce
+
+    useEffect(() => {
+        axios.get(`http://localhost:3000/api/v1/users/bulk/?filter=${filter}`)
+        .then(res => setUsers(res.data.user))
+    }, [filter]);
 
 
   return (
@@ -15,7 +27,7 @@ export const Users = () => {
             Users
         </div>
         <div className="my-2">
-            <input type="text" placeholder="Search users..." className="w-full px-1 py-2 rounded border border-slate-200" />
+            <input onChange={e => setFilter(e.target.value)} type="text" placeholder="Search users..." className="w-full px-1 py-2 rounded border border-slate-200" />
         </div>
         <div>
             {users.map((user) => <User user={user} />)}
@@ -40,7 +52,7 @@ const User = ({user}) => {
                 </div>
             </div>
             <div className="flex flex-col justify-center h-full">
-                <Button label={"Send Money"} />
+                <Button onClick={handleSendMoney}  label={"Send Money"} />
             </div>
         </div>
     )
