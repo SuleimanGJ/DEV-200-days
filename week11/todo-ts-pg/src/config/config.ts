@@ -8,4 +8,6 @@ const DB_DATABASE = process.env.DB_DATABASE;
 const DB_USER = process.env.DB_USER;
 const DB_PASSWORD = process.env.DB_PASSWORD;
 
-export { PORT, DB_USER, DB_HOST, DB_DATABASE, DB_PASSWORD, DB_PORT};
+const JWT_SECRET = process.env.JWT_SECRET  as string;
+
+export { PORT, DB_USER, DB_HOST, DB_DATABASE, DB_PASSWORD, DB_PORT, JWT_SECRET};
