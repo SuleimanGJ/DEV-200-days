@@ -1,0 +1,10 @@
+
+node_modules/
+.env
+.tsbuildinfo
+.agents
+.claude
+.windsurf
+.cursor
+.devin
+dist/
