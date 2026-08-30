@@ -1,0 +1,1 @@
+console.log("Hello TypeScript with Prisma and PostgreSQL");
