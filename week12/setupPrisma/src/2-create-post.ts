@@ -21,7 +21,7 @@ async function main(){
             // authorId: 1
             author: {
                 connect: {
-                    id: 4
+                    id: 1
                 }
             }
         }
