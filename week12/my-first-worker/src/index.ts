@@ -16,11 +16,26 @@ export interface Env {
 }
 
 export default {
-	async fetch(request, env, ctx): Promise<Response> {
+	async fetch(request: Request, env: Env, ctx: ExecutionContext): Promise<Response> {
 		// return new Response("Hello World!");
 		// returning json file
-		return Response.json({
-			message: "Hello Wrangler"
-		})
+		// return Response.json({
+		// 	message: "Hello Wrangler"
+		// })
+		console.log(request.body)
+		console.log(request.headers)
+		console.log(request.method)
+		console.log(request.url)
+
+		if(request.method === "/GET"){
+			return Response.json({
+				message: "You have sent a GET request"
+			});
+		} else {
+			return Response.json({
+				message: "You did not sent a GET request",
+				method: request.method
+			});
+		}
 	},
 } satisfies ExportedHandler<Env>;
