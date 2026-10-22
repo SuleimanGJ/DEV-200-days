@@ -33,3 +33,11 @@ lerna-debug.log*
 .DS_Store
 
 /src/generated/prisma
+
+/src/generated/prisma
+
+
+
+.agents
+.claude
+.windsurf

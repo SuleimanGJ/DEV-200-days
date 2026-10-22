@@ -2,19 +2,16 @@
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "backend",
   "main": "src/index.ts",
-  "compatibility_date": "2026-10-10"
-  // "compatibility_flags": [
-  //   "nodejs_compat"
-  // ],
+  "compatibility_date": "2026-10-10",
+  "compatibility_flags": [
+    "nodejs_compat"
+  ],
   // "vars": {
   //   "MY_VAR": "my-variable"
   // },
-  // "vars": {
-  //   "DATABASE_URL": "postgres://45e3ac98c61377e28e24547741a4cbf892c4116361ce7121d9ad6b927b31a6d0:sk_qlumV8BkZWiwfAb8x3Gl0@pooled.db.prisma.io:5432/postgres?sslmode=require"
-  // }
   "vars": {
     "DATABASE_URL": "postgres://45e3ac98c61377e28e24547741a4cbf892c4116361ce7121d9ad6b927b31a6d0:sk_qlumV8BkZWiwfAb8x3Gl0@pooled.db.prisma.io:5432/postgres?sslmode=require",
-  }
+  },
   // "kv_namespaces": [
   //   {
   //     "binding": "MY_KV_NAMESPACE",
